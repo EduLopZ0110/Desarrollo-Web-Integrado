@@ -62,46 +62,49 @@
 
         <!-- Columna Derecha: Formulario de Contacto -->
         <div class="col-md-6">
-            <form>
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="nombres" class="form-label">Nombres</label>
-                        <input type="text" class="form-control" id="nombres" placeholder="Ingrese sus nombres">
+            <div class="card shadow-sm p-4">
+                <h4 class="text-center text-success mb-4">Formulario de contacto</h4>
+                <form>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="nombres" class="form-label">Nombres</label>
+                            <input type="text" class="form-control" id="nombres" placeholder="Ingrese sus nombres">
+                        </div>
+                        <div class="col">
+                            <label for="apellidos" class="form-label">Apellidos</label>
+                            <input type="text" class="form-control" id="apellidos" placeholder="Ingrese sus apellidos">
+                        </div>
                     </div>
-                    <div class="col">
-                        <label for="apellidos" class="form-label">Apellidos</label>
-                        <input type="text" class="form-control" id="apellidos" placeholder="Ingrese sus apellidos">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="correo" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="correo" placeholder="Ingrese su correo">
+                        </div>
+                        <div class="col">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="telefono" placeholder="Ingrese su teléfono">
+                        </div>
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="correo" class="form-label">Correo electrónico</label>
-                        <input type="email" class="form-control" id="correo" placeholder="Ingrese su correo">
+                    <div class="mb-3">
+                        <label for="asunto" class="form-label">Seleccione Asunto</label>
+                        <select class="form-select" id="asunto">
+                            <option selected disabled>Seleccione un asunto</option>
+                            <option>Parvovirus</option>
+                            <option>Moquillo</option>
+                            <option>Rabia</option>
+                            <option>Sarna</option>
+                            <option>Plaga de pulgas y/o garrapatas</option>
+                            <option>Epilepsia</option>
+                            <option>Otro (especifique)</option>
+                        </select>
                     </div>
-                    <div class="col">
-                        <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="tel" class="form-control" id="telefono" placeholder="Ingrese su teléfono">
+                    <div class="mb-3">
+                        <label for="mensaje" class="form-label">Mensaje</label>
+                        <textarea class="form-control" id="mensaje" rows="4" placeholder="Describa su consulta"></textarea>
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label for="asunto" class="form-label">Seleccione Asunto</label>
-                    <select class="form-select" id="asunto">
-                        <option selected disabled>Seleccione un asunto</option>
-                        <option>Parvovirus</option>
-                        <option>Moquillo</option>
-                        <option>Rabia</option>
-                        <option>Sarna</option>
-                        <option>Plaga de pulgas y/o garrapatas</option>
-                        <option>Epilepsia</option>
-                        <option>Otro (especifique)</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="mensaje" class="form-label">Mensaje</label>
-                    <textarea class="form-control" id="mensaje" rows="4" placeholder="Describa su consulta"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Enviar Formulario</button>
-            </form>
+                    <button type="submit" class="btn btn-primary w-100">Enviar Formulario</button>
+                </form>
+            </div>
         </div>
     </div>
 </main>
