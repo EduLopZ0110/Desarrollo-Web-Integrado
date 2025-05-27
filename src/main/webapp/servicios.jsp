@@ -14,7 +14,7 @@
         <!-- Servicio 1 -->
         <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm">
-                <img src="img/consulta_general.jpg" class="card-img-top" alt="Consulta General">
+                <img src="img/Consulta.jpg" class="card-img-top" alt="Consulta General">
                 <div class="card-body">
                     <h5 class="card-title text-success">Consulta General</h5>
                     <p class="card-text">
@@ -27,7 +27,7 @@
         <!-- Servicio 2 -->
         <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm">
-                <img src="img/vacunacion.jpg" class="card-img-top" alt="Vacunación">
+                <img src="img/Vacunacion.jpg" class="card-img-top" alt="Vacunación">
                 <div class="card-body">
                     <h5 class="card-title text-success">Vacunación</h5>
                     <p class="card-text">
@@ -40,7 +40,7 @@
         <!-- Servicio 3 -->
         <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm">
-                <img src="img/cirugia.jpg" class="card-img-top" alt="Cirugía">
+                <img src="img/Cirugia.jpg" class="card-img-top" alt="Cirugía">
                 <div class="card-body">
                     <h5 class="card-title text-success">Cirugías</h5>
                     <p class="card-text">
@@ -53,7 +53,7 @@
         <!-- Servicio 4 -->
         <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm">
-                <img src="img/estetica.jpg" class="card-img-top" alt="Estética y Baños">
+                <img src="img/Baño.jpg" class="card-img-top" alt="Estética y Baños">
                 <div class="card-body">
                     <h5 class="card-title text-success">Estética y Baños</h5>
                     <p class="card-text">
@@ -66,7 +66,7 @@
         <!-- Servicio 5 -->
         <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm">
-                <img src="img/hospitalizacion.jpg" class="card-img-top" alt="Hospitalización">
+                <img src="img/Hospitalizacion.jpg" class="card-img-top" alt="Hospitalización">
                 <div class="card-body">
                     <h5 class="card-title text-success">Hospitalización</h5>
                     <p class="card-text">
@@ -79,7 +79,7 @@
         <!-- Servicio 6 -->
         <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm">
-                <img src="img/laboratorio.jpg" class="card-img-top" alt="Laboratorio">
+                <img src="img/Laboratorio.jpg" class="card-img-top" alt="Laboratorio">
                 <div class="card-body">
                     <h5 class="card-title text-success">Laboratorio</h5>
                     <p class="card-text">
@@ -90,6 +90,14 @@
         </div>
     </div>
 </main>
+
+<style>
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+</style>
+
 
 <!-- Vincular Bootstrap JS (opcional, si vas a usar interactividad) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

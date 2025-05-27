@@ -9,9 +9,10 @@
             <p>Tu lugar de confianza para el cuidado de tus mascotas.</p>
             <div class="video">
                 <video controls poster="img/poster_video.jpg">
-                    <source src="videos/paraiso.mp4" type="video/mp4">
-                    Tu navegador no soporta videos.
-                </video>
+    <source src="${pageContext.request.contextPath}/video/paraiso.mp4" type="video/mp4">
+    Tu navegador no soporta videos.
+</video>
+
             </div>
         </div>
     </section>
@@ -34,22 +35,22 @@
         <h3>¿Por qué elegirnos?</h3>
         <div class="grid-servicios">
             <div class="card">
-                <img src="img/experiencia.jpg" alt="Experiencia">
+                <img src="img/Experiencia.jpg" alt="Experiencia">
                 <h4>Experiencia</h4>
                 <p>Expertos veterinarios al cuidado de tus mascotas</p>
             </div>
             <div class="card">
-                <img src="img/tratamiento.jpg" alt="Tratamiento">
+                <img src="img/Tratamiento.jpg" alt="Tratamiento">
                 <h4>Tratamiento personalizado</h4>
                 <p>Cuidado individual para cada mascota</p>
             </div>
             <div class="card">
-                <img src="img/equipo.jpg" alt="Equipo">
+                <img src="img/Equipo.jpg" alt="Equipo">
                 <h4>Trabajo en equipo</h4>
                 <p>Colaboración y pasión por los animales</p>
             </div>
             <div class="card">
-                <img src="img/comunidad.jpg" alt="Comunidad">
+                <img src="img/Comunidad.jpg" alt="Comunidad">
                 <h4>Comunidad</h4>
                 <p>Únete a nuestra familia pet lover</p>
             </div>
@@ -86,11 +87,19 @@ main.inicio {
     margin-bottom: 20px;
 }
 
-.hero .video video {
-    width: 100%;
-    max-width: 600px;
-    border-radius: 10px;
+.hero .video {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
+
+.hero .video video {
+    width: 320px; /* o 400px si quieres un poco más grande */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
 
 .quick-signup {
     background-color: #ffffff;
@@ -160,7 +169,10 @@ main.inicio {
 
 .grid-servicios .card img {
     width: 100%;
+    height: 180px; /* Altura uniforme */
+    object-fit: cover; /* Recorta sin deformar */
     border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .grid-servicios .card h4 {
@@ -194,6 +206,13 @@ main.inicio {
 .btn-agendar:hover {
     background-color: #45a049; /* Verde más oscuro al pasar el mouse */
 }
+
+@media (max-width: 480px) {
+    .hero .video video {
+        width: 100%;
+    }
+}
+
 </style>
 
 <%@ include file="footer.jsp" %>

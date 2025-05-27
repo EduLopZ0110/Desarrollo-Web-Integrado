@@ -25,16 +25,16 @@
         <div class="col-md-6">
             <div class="row g-2">
                 <div class="col-6">
-                    <img src="img/mascota1.jpg" class="img-fluid rounded shadow" alt="Mascota 1">
+                    <img src="img/Foto1.jpeg" class="cuadro-mascota shadow" alt="Mascota 1">
                 </div>
                 <div class="col-6">
-                    <img src="img/mascota2.jpg" class="img-fluid rounded shadow" alt="Mascota 2">
+                    <img src="img/Foto2.jpeg" class="cuadro-mascota shadow" alt="Mascota 2">
                 </div>
                 <div class="col-6">
-                    <img src="img/mascota3.jpg" class="img-fluid rounded shadow" alt="Mascota 3">
+                    <img src="img/Foto3.jpeg" class="cuadro-mascota shadow" alt="Mascota 3">
                 </div>
                 <div class="col-6">
-                    <img src="img/mascota4.jpg" class="img-fluid rounded shadow" alt="Mascota 4">
+                    <img src="img/Foto4.jpeg" class="cuadro-mascota shadow" alt="Mascota 4">
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
     <div class="row g-4">
         <!-- Doctor 1 -->
         <div class="col-md-6 d-flex align-items-center">
-            <img src="img/doctor1.jpg" class="img-fluid rounded shadow me-3" style="width: 100px; height: 100px;" alt="Dr. 1">
+            <img src="img/Doctor1.jpg" class="img-doctor shadow me-3" style="width: 100px; height: 100px;" alt="Dr. 1">
             <div>
                 <h5>Dr. Juan Pérez</h5>
                 <p>Especialista en cirugía y emergencias veterinarias.</p>
@@ -57,7 +57,7 @@
         </div>
         <!-- Doctor 2 -->
         <div class="col-md-6 d-flex align-items-center">
-            <img src="img/doctor2.jpg" class="img-fluid rounded shadow me-3" style="width: 100px; height: 100px;" alt="Dr. 2">
+            <img src="img/Doctor2.jpg" class="img-doctor shadow me-3" style="width: 100px; height: 100px;" alt="Dr. 2">
             <div>
                 <h5>Dr. María López</h5>
                 <p>Especialista en dermatología y diagnóstico clínico.</p>
@@ -65,7 +65,7 @@
         </div>
         <!-- Doctor 3 -->
         <div class="col-md-6 d-flex align-items-center">
-            <img src="img/doctor3.jpg" class="img-fluid rounded shadow me-3" style="width: 100px; height: 100px;" alt="Dr. 3">
+            <img src="img/Doctor3.jpg" class="img-doctor shadow me-3" style="width: 100px; height: 100px;" alt="Dr. 3">
             <div>
                 <h5>Dr. Carlos Rivera</h5>
                 <p>Especialista en odontología y nutrición animal.</p>
@@ -73,7 +73,7 @@
         </div>
         <!-- Doctor 4 -->
         <div class="col-md-6 d-flex align-items-center">
-            <img src="img/doctor4.jpg" class="img-fluid rounded shadow me-3" style="width: 100px; height: 100px;" alt="Dr. 4">
+            <img src="img/Doctor4.jpg" class="img-doctor shadow me-3" style="width: 100px; height: 100px;" alt="Dr. 4">
             <div>
                 <h5>Dr. Laura Sánchez</h5>
                 <p>Especialista en medicina interna y rehabilitación.</p>
@@ -81,7 +81,7 @@
         </div>
         <!-- Doctor 5 -->
         <div class="col-md-6 d-flex align-items-center">
-            <img src="img/doctor5.jpg" class="img-fluid rounded shadow me-3" style="width: 100px; height: 100px;" alt="Dr. 5">
+            <img src="img/Doctor5.jpg" class="img-doctor shadow me-3" style="width: 100px; height: 100px;" alt="Dr. 5">
             <div>
                 <h5>Dr. José Ramírez</h5>
                 <p>Especialista en cardiología y cuidados intensivos.</p>
@@ -89,7 +89,7 @@
         </div>
         <!-- Doctor 6 -->
         <div class="col-md-6 d-flex align-items-center">
-            <img src="img/doctor6.jpg" class="img-fluid rounded shadow me-3" style="width: 100px; height: 100px;" alt="Dr. 6">
+            <img src="img/Doctor6.jpg" class="img-doctor shadow me-3" style="width: 100px; height: 100px;" alt="Dr. 6">
             <div>
                 <h5>Dr. Ana Torres</h5>
                 <p>Especialista en oftalmología y reproducción animal.</p>
@@ -97,6 +97,23 @@
         </div>
     </div>
 </main>
+
+ <style>
+    .cuadro-mascota {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+  .img-doctor {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+</style>
 
 <!-- Vincular Bootstrap JS (opcional) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
