@@ -4,57 +4,62 @@ import dao.DAOCita;
 import dao.DAOMascota;
 import modelo.Cita;
 import modelo.Mascota;
-import modelo.Usuario;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @WebServlet("/citas")
 public class CitaServlet extends HttpServlet {
+
     private DAOCita daoCita = new DAOCita();
     private DAOMascota daoMascota = new DAOMascota();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("usuario") == null) {
+        HttpSession sesion = request.getSession(false);
+        if (sesion == null || sesion.getAttribute("usuario") == null) {
             response.sendRedirect("login.jsp");
             return;
         }
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
-        List<Mascota> mascotas = daoMascota.listarPorUsuario(usuario.getId());
-        List<Cita> citas = daoCita.listarPorUsuario(usuario.getId());
 
-        request.setAttribute("mascotas", mascotas);
+        int idUsuario = (int) sesion.getAttribute("idUsuario");
+        List<Cita> citas = daoCita.obtenerPorIdUsuario(idUsuario);
+        List<Mascota> mascotas = daoMascota.obtenerPorIdUsuario(idUsuario);
         request.setAttribute("citas", citas);
+        request.setAttribute("mascotas", mascotas);
         request.getRequestDispatcher("citas.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("usuario") == null) {
+        HttpSession sesion = request.getSession(false);
+        if (sesion == null || sesion.getAttribute("usuario") == null) {
             response.sendRedirect("login.jsp");
             return;
         }
 
-        int id_mascota = Integer.parseInt(request.getParameter("id_mascota"));
-        Date fecha = Date.valueOf(request.getParameter("fecha"));
-        Time hora = Time.valueOf(request.getParameter("hora") + ":00");
+        int idMascota = Integer.parseInt(request.getParameter("idMascota"));
+        String fechaStr = request.getParameter("fecha");
         String motivo = request.getParameter("motivo");
 
-        Cita cita = new Cita();
-        cita.setId_mascota(id_mascota);
-        cita.setFecha(fecha);
-        cita.setHora(hora);
-        cita.setMotivo(motivo);
+        try {
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha = formato.parse(fechaStr);
 
-        daoCita.agregarCita(cita);
+            Cita cita = new Cita();
+            cita.setIdMascota(idMascota);
+            cita.setFechaCita(fecha);
+            cita.setMotivo(motivo);
+
+            daoCita.registrarCita(cita);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         response.sendRedirect("citas");
     }

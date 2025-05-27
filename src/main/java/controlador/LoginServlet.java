@@ -12,23 +12,18 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     private DAOUsuario daoUsuario = new DAOUsuario();
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("login.jsp").forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String correo = request.getParameter("correo");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String nombreUsuario = request.getParameter("nombreUsuario");
         String contrasena = request.getParameter("contrasena");
 
-        Usuario usuario = daoUsuario.validar(correo, contrasena);
-        if (usuario != null) {
+        if (daoUsuario.validarCredenciales(nombreUsuario, contrasena)) {
+            Usuario usuario = daoUsuario.obtenerPorNombreUsuario(nombreUsuario);
             HttpSession session = request.getSession();
             session.setAttribute("usuario", usuario);
-            response.sendRedirect("perfil.jsp");
+            response.sendRedirect("perfil");
         } else {
-            request.setAttribute("error", "Correo o contraseña incorrectos");
+            request.setAttribute("error", "Credenciales inválidas");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }

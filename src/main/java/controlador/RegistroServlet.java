@@ -12,31 +12,20 @@ import java.io.IOException;
 public class RegistroServlet extends HttpServlet {
     private DAOUsuario daoUsuario = new DAOUsuario();
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("registro.jsp").forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nombre = request.getParameter("nombre");
-        String correo = request.getParameter("correo");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String nombreUsuario = request.getParameter("nombreUsuario");
         String contrasena = request.getParameter("contrasena");
 
-        Usuario usuario = new Usuario();
-        usuario.setNombre(nombre);
-        usuario.setCorreo(correo);
-        usuario.setContrasena(contrasena);
+        Usuario nuevoUsuario = new Usuario();
+        nuevoUsuario.setNombreUsuario(nombreUsuario);
+        nuevoUsuario.setContrasenaHash(contrasena);
+        nuevoUsuario.setIdRol(2); // Cliente por defecto
 
-        boolean registrado = daoUsuario.registrar(usuario);
-        if (registrado) {
-            // Login automático después de registrar
-            Usuario u = daoUsuario.validar(correo, contrasena);
-            HttpSession session = request.getSession();
-            session.setAttribute("usuario", u);
-            response.sendRedirect("perfil.jsp");
+        if (daoUsuario.registrarUsuario(nuevoUsuario)) {
+            response.sendRedirect("login.jsp");
         } else {
-            request.setAttribute("error", "Error al registrar usuario. El correo puede estar duplicado.");
+            request.setAttribute("error", "No se pudo registrar");
             request.getRequestDispatcher("registro.jsp").forward(request, response);
         }
     }

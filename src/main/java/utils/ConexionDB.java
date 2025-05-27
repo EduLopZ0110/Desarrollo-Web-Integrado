@@ -5,11 +5,25 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionDB {
-    private static final String URL = "jdbc:mysql://localhost:3306/veterinaria?useSSL=false&serverTimezone=UTC";
-    private static final String USER = "root"; // cambia si tienes otro usuario
-    private static final String PASSWORD = ""; // tu contraseña
+    private static final String URL = "jdbc:mysql://localhost:3306/veterinaria";  // Cambia por tu URL
+    private static final String USER = "root";    // Tu usuario
+    private static final String PASSWORD = "";    // Tu contraseña
 
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+    static {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");  // Carga el driver de MySQL
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Connection getConnection() {
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return connection;
     }
 }

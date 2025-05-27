@@ -1,35 +1,33 @@
 package modelo;
 
 public class Mascota {
-    private int id;
-    private int id_usuario;
-    private String nombre;
-    private String especie;
-    private String raza;
+    private int idMascota;
+    private String nombreMascota;
+    private String tipoMascota;
+    private int idUsuario;
 
-    public Mascota() {}
-
-    public Mascota(int id, int id_usuario, String nombre, String especie, String raza) {
-        this.id = id;
-        this.id_usuario = id_usuario;
-        this.nombre = nombre;
-        this.especie = especie;
-        this.raza = raza;
+    public int getIdMascota() {
+        return idMascota;
     }
-
-    // getters y setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-
-    public int getId_usuario() { return id_usuario; }
-    public void setId_usuario(int id_usuario) { this.id_usuario = id_usuario; }
-
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
-
-    public String getEspecie() { return especie; }
-    public void setEspecie(String especie) { this.especie = especie; }
-
-    public String getRaza() { return raza; }
-    public void setRaza(String raza) { this.raza = raza; }
+    public void setIdMascota(int idMascota) {
+        this.idMascota = idMascota;
+    }
+    public String getNombreMascota() {
+        return nombreMascota;
+    }
+    public void setNombreMascota(String nombreMascota) {
+        this.nombreMascota = nombreMascota;
+    }
+    public String getTipoMascota() {
+        return tipoMascota;
+    }
+    public void setTipoMascota(String tipoMascota) {
+        this.tipoMascota = tipoMascota;
+    }
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 }

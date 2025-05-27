@@ -2,7 +2,6 @@ package controlador;
 
 import dao.DAOMascota;
 import modelo.Mascota;
-import modelo.Usuario;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,41 +11,41 @@ import java.util.List;
 
 @WebServlet("/mascotas")
 public class MascotaServlet extends HttpServlet {
+
     private DAOMascota daoMascota = new DAOMascota();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("usuario") == null) {
+        HttpSession sesion = request.getSession(false);
+        if (sesion == null || sesion.getAttribute("usuario") == null) {
             response.sendRedirect("login.jsp");
             return;
         }
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
-        List<Mascota> lista = daoMascota.listarPorUsuario(usuario.getId());
-        request.setAttribute("mascotas", lista);
+
+        int idUsuario = (int) sesion.getAttribute("idUsuario");
+        List<Mascota> mascotas = daoMascota.obtenerPorIdUsuario(idUsuario);
+        request.setAttribute("mascotas", mascotas);
         request.getRequestDispatcher("mascotas.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("usuario") == null) {
+        HttpSession sesion = request.getSession(false);
+        if (sesion == null || sesion.getAttribute("usuario") == null) {
             response.sendRedirect("login.jsp");
             return;
         }
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
 
         String nombre = request.getParameter("nombre");
-        String especie = request.getParameter("especie");
-        String raza = request.getParameter("raza");
+        String tipo = request.getParameter("tipo");
+        int idUsuario = (int) sesion.getAttribute("idUsuario");
 
         Mascota mascota = new Mascota();
-        mascota.setId_usuario(usuario.getId());
-        mascota.setNombre(nombre);
-        mascota.setEspecie(especie);
-        mascota.setRaza(raza);
+        mascota.setNombreMascota(nombre);
+        mascota.setTipoMascota(tipo);
+        mascota.setIdUsuario(idUsuario);
 
-        daoMascota.agregarMascota(mascota);
+        daoMascota.registrarMascota(mascota);
 
         response.sendRedirect("mascotas");
     }

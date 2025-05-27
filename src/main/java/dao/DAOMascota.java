@@ -9,61 +9,39 @@ import java.util.List;
 
 public class DAOMascota {
 
-    public boolean agregarMascota(Mascota mascota) {
-        String sql = "INSERT INTO mascotas(id_usuario, nombre, especie, raza) VALUES (?, ?, ?, ?)";
-        try (Connection con = ConexionDB.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, mascota.getId_usuario());
-            ps.setString(2, mascota.getNombre());
-            ps.setString(3, mascota.getEspecie());
-            ps.setString(4, mascota.getRaza());
-            return ps.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public List<Mascota> listarPorUsuario(int id_usuario) {
-        List<Mascota> lista = new ArrayList<>();
-        String sql = "SELECT * FROM mascotas WHERE id_usuario = ?";
-        try (Connection con = ConexionDB.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, id_usuario);
-            ResultSet rs = ps.executeQuery();
+    public List<Mascota> obtenerPorIdUsuario(int idUsuario) {
+        List<Mascota> mascotas = new ArrayList<>();
+        String sql = "SELECT * FROM MASCOTA WHERE IdUsuario = ?";
+        try (Connection conn = ConexionDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idUsuario);
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Mascota m = new Mascota();
-                m.setId(rs.getInt("id"));
-                m.setId_usuario(rs.getInt("id_usuario"));
-                m.setNombre(rs.getString("nombre"));
-                m.setEspecie(rs.getString("especie"));
-                m.setRaza(rs.getString("raza"));
-                lista.add(m);
+                Mascota mascota = new Mascota();
+                mascota.setIdMascota(rs.getInt("IdMascota"));
+                mascota.setNombreMascota(rs.getString("NombreMascota"));
+                mascota.setTipoMascota(rs.getString("TipoMascota"));
+                mascota.setIdUsuario(rs.getInt("IdUsuario"));
+                mascotas.add(mascota);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return lista;
+        return mascotas;
     }
 
-    public Mascota obtenerPorId(int id) {
-        Mascota mascota = null;
-        String sql = "SELECT * FROM mascotas WHERE id = ?";
-        try (Connection con = ConexionDB.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                mascota = new Mascota();
-                mascota.setId(rs.getInt("id"));
-                mascota.setId_usuario(rs.getInt("id_usuario"));
-                mascota.setNombre(rs.getString("nombre"));
-                mascota.setEspecie(rs.getString("especie"));
-                mascota.setRaza(rs.getString("raza"));
-            }
-        } catch (SQLException e) {
+    public boolean registrarMascota(Mascota mascota) {
+        String sql = "INSERT INTO MASCOTA (NombreMascota, TipoMascota, IdUsuario) VALUES (?, ?, ?)";
+        try (Connection conn = ConexionDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, mascota.getNombreMascota());
+            stmt.setString(2, mascota.getTipoMascota());
+            stmt.setInt(3, mascota.getIdUsuario());
+            int filas = stmt.executeUpdate();
+            return filas > 0;
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return mascota;
+        return false;
     }
 }

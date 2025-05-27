@@ -3,85 +3,51 @@ package dao;
 import modelo.Usuario;
 import utils.ConexionDB;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class DAOUsuario {
-
-    public Usuario validar(String correo, String contrasena) {
+    public Usuario obtenerPorNombreUsuario(String nombreUsuario) {
         Usuario usuario = null;
-        String sql = "SELECT * FROM usuarios WHERE correo = ? AND contrasena = ?";
-        try (Connection con = ConexionDB.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-
-            ps.setString(1, correo);
-            ps.setString(2, contrasena);
-            ResultSet rs = ps.executeQuery();
-
+        String sql = "SELECT * FROM USUARIO WHERE NombreUsuario = ?";
+        try (Connection conn = ConexionDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, nombreUsuario);
+            ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 usuario = new Usuario();
-                usuario.setId(rs.getInt("id"));
-                usuario.setNombre(rs.getString("nombre"));
-                usuario.setCorreo(rs.getString("correo"));
-                usuario.setContrasena(rs.getString("contrasena"));
+                usuario.setIdUsuario(rs.getInt("IdUsuario"));
+                usuario.setNombreUsuario(rs.getString("NombreUsuario"));
+                usuario.setContrasenaHash(rs.getString("ContrasenaHash"));
+                usuario.setIdRol(rs.getInt("IdRol"));
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return usuario;
     }
 
-    public boolean registrar(Usuario usuario) {
-        String sql = "INSERT INTO usuarios(nombre, correo, contrasena) VALUES (?, ?, ?)";
-        try (Connection con = ConexionDB.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-
-            ps.setString(1, usuario.getNombre());
-            ps.setString(2, usuario.getCorreo());
-            ps.setString(3, usuario.getContrasena());
-            int res = ps.executeUpdate();
-            return res > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+    public boolean validarCredenciales(String nombreUsuario, String contrasena) {
+        Usuario usuario = obtenerPorNombreUsuario(nombreUsuario);
+        if (usuario != null) {
+            return usuario.getContrasenaHash().equals(contrasena);
         }
+        return false;
     }
 
-    public boolean actualizar(Usuario usuario) {
-        String sql = "UPDATE usuarios SET nombre=?, correo=?, contrasena=? WHERE id=?";
-        try (Connection con = ConexionDB.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-
-            ps.setString(1, usuario.getNombre());
-            ps.setString(2, usuario.getCorreo());
-            ps.setString(3, usuario.getContrasena());
-            ps.setInt(4, usuario.getId());
-
-            int res = ps.executeUpdate();
-            return res > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public Usuario obtenerPorId(int id) {
-        Usuario usuario = null;
-        String sql = "SELECT * FROM usuarios WHERE id = ?";
-        try (Connection con = ConexionDB.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                usuario = new Usuario();
-                usuario.setId(rs.getInt("id"));
-                usuario.setNombre(rs.getString("nombre"));
-                usuario.setCorreo(rs.getString("correo"));
-                usuario.setContrasena(rs.getString("contrasena"));
-            }
-        } catch (SQLException e) {
+    public boolean registrarUsuario(Usuario usuario) {
+        String sql = "INSERT INTO USUARIO (NombreUsuario, ContrasenaHash, IdRol) VALUES (?, ?, ?)";
+        try (Connection conn = ConexionDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, usuario.getNombreUsuario());
+            stmt.setString(2, usuario.getContrasenaHash());
+            stmt.setInt(3, usuario.getIdRol());
+            int filas = stmt.executeUpdate();
+            return filas > 0;
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return usuario;
+        return false;
     }
 }
