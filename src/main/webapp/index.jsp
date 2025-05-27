@@ -1,6 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="header.jsp" %>
 
+<!-- Bootstrap CSS (si aún no lo tienes en header) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
 <main class="inicio">
     <!-- Sección de bienvenida -->
     <section class="hero">
@@ -59,6 +63,10 @@
         <a href="citas.jsp" class="btn-agendar">Agendar Cita</a>
     </section>
 </main>
+    
+<!-- Bootstrap JS y FontAwesome -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
 <style>
 /* Estilos adaptados para el diseño veterinario */

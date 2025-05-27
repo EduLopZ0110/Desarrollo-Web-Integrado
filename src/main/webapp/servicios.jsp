@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="header.jsp" %>
 
-<!-- Vincular Bootstrap CSS desde CDN (si aún no está vinculado en tu header) -->
+<!-- Bootstrap CSS (si aún no lo tienes en header) -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
 <main class="container py-5">
     <h2 class="text-center text-success mb-4">Nuestros Servicios</h2>
@@ -90,6 +91,10 @@
         </div>
     </div>
 </main>
+
+<!-- Bootstrap JS y FontAwesome -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
 <style>
     .card-img-top {
